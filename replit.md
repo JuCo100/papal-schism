@@ -50,9 +50,25 @@ client/
 
 ## Running the App
 
-The app runs on Expo:
-- Frontend: Port 8081 (Expo dev server)
+The app runs on port 5000:
+- Server: Express backend serving landing page and API
 - Scan QR code to test on physical device via Expo Go
+
+### Development
+```bash
+npm run server:dev
+```
+
+### Production
+```bash
+npm run server:build && npm run server:prod
+```
+
+## Database
+
+- PostgreSQL with Drizzle ORM
+- Schema in `shared/schema.ts`
+- Push schema changes: `npm run db:push`
 
 ## Recent Changes
 
@@ -61,3 +77,4 @@ The app runs on Expo:
 - Timed decisions with automatic fallback
 - Visual scene backgrounds based on story context
 - Stats overlay with relationship tracking
+- Configured for Replit with PostgreSQL database
