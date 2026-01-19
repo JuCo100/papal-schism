@@ -126,41 +126,57 @@ async function serveExpoManifest(platform: string, res: Response) {
     return res.send(manifest);
   }
 
-  // In development, proxy to Expo dev server
-  if (process.env.NODE_ENV === "development" || !process.env.NODE_ENV) {
-    try {
-      const expoPort = process.env.EXPO_PORT || "8081";
-      const expoUrl = `http://localhost:${expoPort}/manifest`;
-      
-      log(`Proxying manifest request for ${platform} to ${expoUrl}`);
-      
-      const response = await fetch(expoUrl, {
-        headers: { 
-          "expo-platform": platform,
-          "Accept": "application/json"
-        },
-      });
+  // Try to proxy to Expo dev server (prefer this over static build when available)
+  const expoPort = process.env.EXPO_PORT || "8081";
+  const expoUrl = `http://localhost:${expoPort}/manifest`;
+  
+  log(`Attempting to proxy manifest request for ${platform} to ${expoUrl}`);
+  
+  try {
+    // Create timeout controller
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    
+    const response = await fetch(expoUrl, {
+      headers: { 
+        "expo-platform": platform,
+        "Accept": "application/json"
+      },
+      signal: controller.signal,
+    });
+    
+    clearTimeout(timeoutId);
 
-      if (response.ok) {
-        const manifest = await response.json();
-        res.setHeader("expo-protocol-version", "1");
-        res.setHeader("expo-sfv-version", "0");
-        res.setHeader("content-type", "application/json");
-        log(`Successfully proxied manifest for ${platform}`);
-        return res.json(manifest);
-      } else {
-        log(`Expo dev server returned ${response.status} for ${platform} manifest`);
-      }
-    } catch (error: any) {
+    if (response.ok) {
+      const manifest = await response.json();
+      res.setHeader("expo-protocol-version", "1");
+      res.setHeader("expo-sfv-version", "0");
+      res.setHeader("content-type", "application/json");
+      log(`Successfully proxied manifest for ${platform}`);
+      return res.json(manifest);
+    } else {
+      log(`Expo dev server returned ${response.status} for ${platform} manifest`);
+      const errorText = await response.text().catch(() => "Unknown error");
+      log(`Error response: ${errorText}`);
+    }
+  } catch (error: any) {
+    if (error?.name === "AbortError" || error?.name === "TimeoutError") {
+      log(`Timeout connecting to Expo dev server at ${expoUrl} for ${platform} manifest`);
+    } else if (error?.code === "ECONNREFUSED") {
+      log(`Connection refused to Expo dev server at ${expoUrl} - server may not be running`);
+    } else {
       log(`Failed to proxy manifest from Expo dev server (${platform}): ${error?.message || error}`);
-      // Don't fail completely, continue to 404 with helpful message
     }
   }
 
-  // If neither static build nor dev server available, return 404
+  // If neither static build nor dev server available, return 404 with helpful message
   return res
     .status(404)
-    .json({ error: `Manifest not found for platform: ${platform}. Make sure Expo dev server is running or run the static build.` });
+    .json({ 
+      error: `Manifest not found for platform: ${platform}`,
+      message: "Make sure the Expo dev server is running on port 8081. Run 'npm run expo:dev' to start it.",
+      troubleshooting: "If you're in production, run 'npm run expo:static:build' to generate static manifests."
+    });
 }
 
 function serveLandingPage({
@@ -210,15 +226,16 @@ function configureExpoAndLanding(app: express.Application) {
       return next();
     }
 
-    if (req.path !== "/" && req.path !== "/manifest") {
-      return next();
-    }
-
+    // Check for manifest requests (can come from /manifest or /)
     const platform = req.header("expo-platform");
     if (platform && (platform === "ios" || platform === "android")) {
-      return await serveExpoManifest(platform, res);
+      if (req.path === "/" || req.path === "/manifest" || req.path.startsWith("/manifest")) {
+        log(`Manifest request detected: platform=${platform}, path=${req.path}`);
+        return await serveExpoManifest(platform, res);
+      }
     }
 
+    // Serve landing page for root path
     if (req.path === "/") {
       return serveLandingPage({
         req,
