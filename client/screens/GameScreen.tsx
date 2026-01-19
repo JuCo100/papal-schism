@@ -159,8 +159,8 @@ export default function GameScreen({
     <LinearGradient
       colors={sceneBackground.colors}
       style={styles.container}
-      start={[sceneBackground.start.x, sceneBackground.start.y]}
-      end={[sceneBackground.end.x, sceneBackground.end.y]}
+      start={sceneBackground.start}
+      end={sceneBackground.end}
     >
       <Pressable
         style={styles.topBar}

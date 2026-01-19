@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import Animated, { FadeIn, SlideInDown } from "react-native-reanimated";
+import Animated, { SlideInDown } from "react-native-reanimated";
 import { StoryNode, SceneSvgKey } from "@/data/gameTypes";
 import { getSceneBackground } from "./sceneStyles";
 import { renderSceneSvg } from "./sceneSvgs";
@@ -42,15 +42,11 @@ export default function SceneCard({ node }: SceneCardProps) {
   const sceneSvgKey: SceneSvgKey = node.sceneSvgKey || DEFAULT_SCENE_SVG_KEYS[sceneVisual] || "candles";
 
   return (
-    <Animated.View
-      style={styles.container}
-      entering={FadeIn.duration(500).delay(100)}
-      key={node.id}
-    >
+    <View style={styles.container}>
       <LinearGradient
         colors={background.colors}
-        start={[background.start.x, background.start.y]}
-        end={[background.end.x, background.end.y]}
+        start={background.start}
+        end={background.end}
         style={styles.gradient}
       >
         <View style={styles.content}>
@@ -85,7 +81,7 @@ export default function SceneCard({ node }: SceneCardProps) {
           )}
         </View>
       </LinearGradient>
-    </Animated.View>
+    </View>
   );
 }
 
