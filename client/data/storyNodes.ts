@@ -4,6 +4,9 @@ export const storyNodes: StoryNode[] = [
   {
     id: "opening",
     sceneVisual: "coronation",
+    sceneIcon: "👑",
+    sceneTitle: "Coronation",
+    sceneSvgKey: "crown",
     dialogue: [
       "The Sistine Chapel falls silent.",
       "Cardinals have cast their votes. The smoke rises white.",
@@ -43,6 +46,9 @@ export const storyNodes: StoryNode[] = [
   {
     id: "first_council",
     sceneVisual: "council",
+    sceneIcon: "🕯️",
+    sceneTitle: "Council",
+    sceneSvgKey: "candles",
     dialogue: [
       "Days pass. Your first council convenes.",
       "Cardinal Orsini speaks first. His voice carries decades of ambition.",
@@ -83,6 +89,9 @@ export const storyNodes: StoryNode[] = [
   {
     id: "war_escalates",
     sceneVisual: "war",
+    sceneIcon: "⚔️",
+    sceneTitle: "War",
+    sceneSvgKey: "swords",
     dialogue: [
       "Months pass. The war grows worse.",
       "Messengers bring reports of burned villages. Massacred civilians. Churches desecrated.",
@@ -125,6 +134,9 @@ export const storyNodes: StoryNode[] = [
   {
     id: "famine_begins",
     sceneVisual: "famine",
+    sceneIcon: "🌾",
+    sceneTitle: "Famine",
+    sceneSvgKey: "wheat",
     dialogue: [
       "Winter comes early. Harvests fail across the continent.",
       "Refugees flood into Rome. Gaunt faces. Hollow eyes.",
@@ -163,6 +175,9 @@ export const storyNodes: StoryNode[] = [
   {
     id: "scandal_brewing",
     sceneVisual: "scandal",
+    sceneIcon: "🎭",
+    sceneTitle: "Scandal",
+    sceneSvgKey: "mask",
     dialogue: [
       "Spring brings no relief. Only scandal.",
       "A young scribe discovers documents. Payments. Bribes. Secrets.",
@@ -205,6 +220,9 @@ export const storyNodes: StoryNode[] = [
   {
     id: "emperor_demands",
     sceneVisual: "council",
+    sceneIcon: "🕯️",
+    sceneTitle: "Council",
+    sceneSvgKey: "candles",
     dialogue: [
       "The Holy Roman Emperor's ambassador arrives unannounced.",
       "He carries a demand. The Emperor wishes to appoint his own bishops.",
@@ -246,6 +264,9 @@ export const storyNodes: StoryNode[] = [
   {
     id: "castile_offer",
     sceneVisual: "council",
+    sceneIcon: "🕯️",
+    sceneTitle: "Council",
+    sceneSvgKey: "candles",
     dialogue: [
       "Castile sends a different kind of offer.",
       "King Alfonso proposes an alliance. A crusade against the Moors.",
@@ -286,6 +307,9 @@ export const storyNodes: StoryNode[] = [
   {
     id: "schism_threat",
     sceneVisual: "schism",
+    sceneIcon: "✝️",
+    sceneTitle: "Schism",
+    sceneSvgKey: "split_cross",
     dialogue: [
       "The worst news arrives at midnight.",
       "A council of cardinals in Avignon has elected their own Pope.",
@@ -324,6 +348,9 @@ export const storyNodes: StoryNode[] = [
   {
     id: "final_crisis",
     sceneVisual: "war",
+    sceneIcon: "⚔️",
+    sceneTitle: "Final Crisis",
+    sceneSvgKey: "swords",
     dialogue: [
       "A year of your papacy. It feels like a lifetime.",
       "War still rages. Famine still kills. The schism still threatens.",
@@ -372,6 +399,9 @@ export const storyNodes: StoryNode[] = [
   {
     id: "judgment",
     sceneVisual: "judgment",
+    sceneIcon: "⚖️",
+    sceneTitle: "Judgment",
+    sceneSvgKey: "scales",
     dialogue: [
       "History will remember you.",
       "Every choice. Every compromise. Every soul saved or damned by your hand.",

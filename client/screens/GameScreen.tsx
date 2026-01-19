@@ -15,11 +15,12 @@ import Animated, {
 import * as Haptics from "expo-haptics";
 
 import { GameColors, Spacing, Fonts } from "@/constants/theme";
-import { StoryNode, Choice, GameState, SCENE_ICONS, SceneVisual } from "@/data/gameTypes";
+import { StoryNode, Choice, GameState, SceneVisual } from "@/data/gameTypes";
 import StatsOverlay from "@/components/StatsOverlay";
 import ChoiceButton from "@/components/ChoiceButton";
 import TimerBar from "@/components/TimerBar";
 import ConsequenceOverlay from "@/components/ConsequenceOverlay";
+import SceneCard from "@/ui/SceneCard";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -88,7 +89,6 @@ export default function GameScreen({
   const dialogueOpacity = useSharedValue(1);
 
   const sceneBackground = SCENE_BACKGROUNDS[currentNode.sceneVisual];
-  const sceneIcon = SCENE_ICONS[currentNode.sceneVisual];
   const currentDialogue = currentNode.dialogue[gameState.dialogueIndex];
   const showChoices = isAtChoices && currentNode.choices;
 
@@ -177,18 +177,7 @@ export default function GameScreen({
         disabled={showChoices}
       >
         <View style={[styles.contentArea, { paddingTop: insets.top + 60 }]}>
-          <Animated.View
-            style={styles.iconContainer}
-            entering={FadeIn.duration(500)}
-            key={currentNode.sceneVisual}
-          >
-            <Feather
-              name={sceneIcon as any}
-              size={64}
-              color={GameColors.papalGold}
-              style={styles.sceneIcon}
-            />
-          </Animated.View>
+          <SceneCard node={currentNode} />
 
           <ScrollView
             style={styles.dialogueScrollView}
@@ -271,14 +260,7 @@ const styles = StyleSheet.create({
   },
   contentArea: {
     flex: 1,
-    paddingHorizontal: Spacing.lg,
-  },
-  iconContainer: {
-    alignItems: "center",
-    marginBottom: Spacing["2xl"],
-  },
-  sceneIcon: {
-    opacity: 0.8,
+    paddingHorizontal: 0,
   },
   dialogueScrollView: {
     flex: 1,

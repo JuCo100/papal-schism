@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Pressable, View } from "react-native";
+import { StyleSheet, Pressable } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -16,25 +16,6 @@ interface ChoiceButtonProps {
   choice: Choice;
   onPress: () => void;
   delay?: number;
-}
-
-function formatDelta(value: number): string {
-  return value > 0 ? `+${value}` : `${value}`;
-}
-
-function getStatLabel(key: string): string {
-  const labels: Record<string, string> = {
-    legitimacy: "Legitimacy",
-    gold: "Gold",
-    piety: "Piety",
-    stability: "Stability",
-    curia: "Curia",
-    france: "France",
-    england: "England",
-    holyRomanEmpire: "HRE",
-    castile: "Castile",
-  };
-  return labels[key] || key;
 }
 
 export default function ChoiceButton({
@@ -60,24 +41,6 @@ export default function ChoiceButton({
     opacity.value = withSpring(1);
   };
 
-  const statChanges: { key: string; value: number; positive: boolean }[] = [];
-  
-  if (choice.statDeltas) {
-    Object.entries(choice.statDeltas).forEach(([key, value]) => {
-      if (value !== undefined && value !== 0) {
-        statChanges.push({ key, value, positive: value > 0 });
-      }
-    });
-  }
-  
-  if (choice.relationshipDeltas) {
-    Object.entries(choice.relationshipDeltas).forEach(([key, value]) => {
-      if (value !== undefined && value !== 0) {
-        statChanges.push({ key, value, positive: value > 0 });
-      }
-    });
-  }
-
   return (
     <AnimatedPressable
       style={[styles.container, animatedStyle]}
@@ -88,22 +51,6 @@ export default function ChoiceButton({
       testID={`choice-${choice.id}`}
     >
       <Animated.Text style={styles.choiceText}>{choice.text}</Animated.Text>
-      
-      {statChanges.length > 0 ? (
-        <View style={styles.consequencesRow}>
-          {statChanges.slice(0, 4).map(({ key, value, positive }) => (
-            <Animated.Text
-              key={key}
-              style={[
-                styles.consequenceText,
-                { color: positive ? GameColors.papalGold : GameColors.bloodCrimson },
-              ]}
-            >
-              {getStatLabel(key)} {formatDelta(value)}
-            </Animated.Text>
-          ))}
-        </View>
-      ) : null}
     </AnimatedPressable>
   );
 }
@@ -123,17 +70,5 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: GameColors.textPrimary,
     textAlign: "center",
-  },
-  consequencesRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    marginTop: Spacing.sm,
-    gap: Spacing.md,
-  },
-  consequenceText: {
-    fontFamily: Fonts.serif,
-    fontSize: 12,
-    fontStyle: "italic",
   },
 });

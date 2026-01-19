@@ -7,6 +7,15 @@ export type SceneVisual =
   | "schism"
   | "judgment";
 
+export type SceneSvgKey = 
+  | "crown"
+  | "candles"
+  | "swords"
+  | "wheat"
+  | "mask"
+  | "split_cross"
+  | "scales";
+
 export interface GameStats {
   legitimacy: number;
   gold: number;
@@ -53,6 +62,9 @@ export interface Choice {
 export interface StoryNode {
   id: string;
   sceneVisual: SceneVisual;
+  sceneTitle?: string;
+  sceneIcon?: string;
+  sceneSvgKey?: SceneSvgKey;
   dialogue: string[];
   choices?: Choice[];
   timedDecision?: {
