@@ -49,8 +49,8 @@ export default function SceneCard({ node }: SceneCardProps) {
     >
       <LinearGradient
         colors={background.colors}
-        start={background.start}
-        end={background.end}
+        start={[background.start.x, background.start.y]}
+        end={[background.end.x, background.end.y]}
         style={styles.gradient}
       >
         <View style={styles.content}>
