@@ -1,18 +1,16 @@
 import React from "react";
 import Svg, { Path, Circle, Line, G } from "react-native-svg";
 import { SceneSvgKey } from "@/data/gameTypes";
-import { ViewStyle } from "react-native";
 
 interface SceneSvgProps {
   width?: number;
   height?: number;
-  style?: ViewStyle;
 }
 
 // Simple crown SVG
-function CrownSvg({ width = 160, height = 90, style }: SceneSvgProps) {
+function CrownSvg({ width = 160, height = 90 }: SceneSvgProps) {
   return (
-    <Svg width={width} height={height} viewBox="0 0 160 90" style={style}>
+    <Svg width={width} height={height} viewBox="0 0 160 90">
       <Path
         d="M20 60 L40 30 L50 40 L60 25 L70 40 L80 25 L90 40 L100 25 L110 40 L120 30 L140 60 Z"
         fill="none"
@@ -29,9 +27,9 @@ function CrownSvg({ width = 160, height = 90, style }: SceneSvgProps) {
 }
 
 // Simple candles SVG
-function CandlesSvg({ width = 160, height = 90, style }: SceneSvgProps) {
+function CandlesSvg({ width = 160, height = 90 }: SceneSvgProps) {
   return (
-    <Svg width={width} height={height} viewBox="0 0 160 90" style={style}>
+    <Svg width={width} height={height} viewBox="0 0 160 90">
       {/* Left candle */}
       <Path d="M40 30 L50 30 L50 70 L40 70 Z" fill="#8B5A00" />
       <Circle cx="45" cy="25" r="3" fill="#FFD700" />
@@ -51,9 +49,9 @@ function CandlesSvg({ width = 160, height = 90, style }: SceneSvgProps) {
 }
 
 // Simple swords SVG
-function SwordsSvg({ width = 160, height = 90, style }: SceneSvgProps) {
+function SwordsSvg({ width = 160, height = 90 }: SceneSvgProps) {
   return (
-    <Svg width={width} height={height} viewBox="0 0 160 90" style={style}>
+    <Svg width={width} height={height} viewBox="0 0 160 90">
       {/* Left sword */}
       <Line x1="50" y1="20" x2="50" y2="70" stroke="#CCCCCC" strokeWidth="4" strokeLinecap="round" />
       <Path d="M45 25 L50 20 L55 25 L50 28 Z" fill="#8B0000" />
@@ -70,9 +68,9 @@ function SwordsSvg({ width = 160, height = 90, style }: SceneSvgProps) {
 }
 
 // Simple wheat SVG
-function WheatSvg({ width = 160, height = 90, style }: SceneSvgProps) {
+function WheatSvg({ width = 160, height = 90 }: SceneSvgProps) {
   return (
-    <Svg width={width} height={height} viewBox="0 0 160 90" style={style}>
+    <Svg width={width} height={height} viewBox="0 0 160 90">
       {/* Left stalk */}
       <Path d="M40 60 Q40 30 50 25" stroke="#DAA520" strokeWidth="3" fill="none" strokeLinecap="round" />
       <Circle cx="50" cy="25" r="4" fill="#DAA520" opacity="0.7" />
@@ -95,9 +93,9 @@ function WheatSvg({ width = 160, height = 90, style }: SceneSvgProps) {
 }
 
 // Simple mask SVG
-function MaskSvg({ width = 160, height = 90, style }: SceneSvgProps) {
+function MaskSvg({ width = 160, height = 90 }: SceneSvgProps) {
   return (
-    <Svg width={width} height={height} viewBox="0 0 160 90" style={style}>
+    <Svg width={width} height={height} viewBox="0 0 160 90">
       {/* Mask outline */}
       <Path
         d="M50 50 Q60 35 70 40 Q80 45 90 40 Q100 35 110 50 Q100 60 80 65 Q60 60 50 50"
@@ -120,9 +118,9 @@ function MaskSvg({ width = 160, height = 90, style }: SceneSvgProps) {
 }
 
 // Simple split cross SVG
-function SplitCrossSvg({ width = 160, height = 90, style }: SceneSvgProps) {
+function SplitCrossSvg({ width = 160, height = 90 }: SceneSvgProps) {
   return (
-    <Svg width={width} height={height} viewBox="0 0 160 90" style={style}>
+    <Svg width={width} height={height} viewBox="0 0 160 90">
       {/* Left side cross */}
       <Line x1="50" y1="30" x2="50" y2="60" stroke="#C9A961" strokeWidth="5" strokeLinecap="round" />
       <Line x1="40" y1="45" x2="60" y2="45" stroke="#C9A961" strokeWidth="5" strokeLinecap="round" />
@@ -138,9 +136,9 @@ function SplitCrossSvg({ width = 160, height = 90, style }: SceneSvgProps) {
 }
 
 // Simple scales SVG
-function ScalesSvg({ width = 160, height = 90, style }: SceneSvgProps) {
+function ScalesSvg({ width = 160, height = 90 }: SceneSvgProps) {
   return (
-    <Svg width={width} height={height} viewBox="0 0 160 90" style={style}>
+    <Svg width={width} height={height} viewBox="0 0 160 90">
       {/* Base */}
       <Path d="M70 75 L90 75" stroke="#CCCCCC" strokeWidth="4" strokeLinecap="round" />
       {/* Central pillar */}

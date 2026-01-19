@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import Animated, { SlideInDown } from "react-native-reanimated";
+import Animated, { SlideInDown, FadeIn } from "react-native-reanimated";
 import { StoryNode, SceneSvgKey } from "@/data/gameTypes";
 import { getSceneBackground } from "./sceneStyles";
 import { renderSceneSvg } from "./sceneSvgs";
@@ -60,13 +60,12 @@ export default function SceneCard({ node }: SceneCardProps) {
 
           {/* SVG illustration */}
           <Animated.View
-            style={styles.svgContainer}
+            style={[styles.svgContainer, { opacity: 0.8 }]}
             entering={FadeIn.duration(500).delay(300)}
           >
             {renderSceneSvg(sceneSvgKey, {
               width: 160,
               height: 90,
-              style: styles.svg,
             })}
           </Animated.View>
 
@@ -114,9 +113,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginVertical: Spacing.sm,
-  },
-  svg: {
-    opacity: 0.8,
   },
   title: {
     fontSize: 18,
