@@ -127,11 +127,18 @@ async function serveExpoManifest(platform: string, res: Response) {
   }
 
   // In development, proxy to Expo dev server
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === "development" || !process.env.NODE_ENV) {
     try {
       const expoPort = process.env.EXPO_PORT || "8081";
-      const response = await fetch(`http://localhost:${expoPort}/manifest`, {
-        headers: { "expo-platform": platform },
+      const expoUrl = `http://localhost:${expoPort}/manifest`;
+      
+      log(`Proxying manifest request for ${platform} to ${expoUrl}`);
+      
+      const response = await fetch(expoUrl, {
+        headers: { 
+          "expo-platform": platform,
+          "Accept": "application/json"
+        },
       });
 
       if (response.ok) {
@@ -139,10 +146,14 @@ async function serveExpoManifest(platform: string, res: Response) {
         res.setHeader("expo-protocol-version", "1");
         res.setHeader("expo-sfv-version", "0");
         res.setHeader("content-type", "application/json");
+        log(`Successfully proxied manifest for ${platform}`);
         return res.json(manifest);
+      } else {
+        log(`Expo dev server returned ${response.status} for ${platform} manifest`);
       }
-    } catch (error) {
-      log(`Failed to proxy manifest from Expo dev server: ${error}`);
+    } catch (error: any) {
+      log(`Failed to proxy manifest from Expo dev server (${platform}): ${error?.message || error}`);
+      // Don't fail completely, continue to 404 with helpful message
     }
   }
 
