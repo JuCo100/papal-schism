@@ -108,7 +108,7 @@ function getAppName(): string {
   }
 }
 
-function serveExpoManifest(platform: string, res: Response) {
+async function serveExpoManifest(platform: string, res: Response) {
   const manifestPath = path.resolve(
     process.cwd(),
     "static-build",
@@ -116,18 +116,40 @@ function serveExpoManifest(platform: string, res: Response) {
     "manifest.json",
   );
 
-  if (!fs.existsSync(manifestPath)) {
-    return res
-      .status(404)
-      .json({ error: `Manifest not found for platform: ${platform}` });
+  // If static build exists, serve it
+  if (fs.existsSync(manifestPath)) {
+    res.setHeader("expo-protocol-version", "1");
+    res.setHeader("expo-sfv-version", "0");
+    res.setHeader("content-type", "application/json");
+
+    const manifest = fs.readFileSync(manifestPath, "utf-8");
+    return res.send(manifest);
   }
 
-  res.setHeader("expo-protocol-version", "1");
-  res.setHeader("expo-sfv-version", "0");
-  res.setHeader("content-type", "application/json");
+  // In development, proxy to Expo dev server
+  if (process.env.NODE_ENV === "development") {
+    try {
+      const expoPort = process.env.EXPO_PORT || "8081";
+      const response = await fetch(`http://localhost:${expoPort}/manifest`, {
+        headers: { "expo-platform": platform },
+      });
 
-  const manifest = fs.readFileSync(manifestPath, "utf-8");
-  res.send(manifest);
+      if (response.ok) {
+        const manifest = await response.json();
+        res.setHeader("expo-protocol-version", "1");
+        res.setHeader("expo-sfv-version", "0");
+        res.setHeader("content-type", "application/json");
+        return res.json(manifest);
+      }
+    } catch (error) {
+      log(`Failed to proxy manifest from Expo dev server: ${error}`);
+    }
+  }
+
+  // If neither static build nor dev server available, return 404
+  return res
+    .status(404)
+    .json({ error: `Manifest not found for platform: ${platform}. Make sure Expo dev server is running or run the static build.` });
 }
 
 function serveLandingPage({
@@ -172,7 +194,7 @@ function configureExpoAndLanding(app: express.Application) {
 
   log("Serving static Expo files with dynamic manifest routing");
 
-  app.use((req: Request, res: Response, next: NextFunction) => {
+  app.use(async (req: Request, res: Response, next: NextFunction) => {
     if (req.path.startsWith("/api")) {
       return next();
     }
@@ -183,7 +205,7 @@ function configureExpoAndLanding(app: express.Application) {
 
     const platform = req.header("expo-platform");
     if (platform && (platform === "ios" || platform === "android")) {
-      return serveExpoManifest(platform, res);
+      return await serveExpoManifest(platform, res);
     }
 
     if (req.path === "/") {
