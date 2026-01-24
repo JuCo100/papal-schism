@@ -24,7 +24,7 @@ export default function RootStackNavigator() {
     currentNode,
     isAtChoices,
     lastStatChanges,
-    showConsequence,
+    consequenceData,
     startGame,
     continueGame,
     advanceDialogue,
@@ -63,7 +63,7 @@ export default function RootStackNavigator() {
           currentNode={currentNode}
           isAtChoices={isAtChoices || false}
           lastStatChanges={lastStatChanges}
-          showConsequence={showConsequence}
+          consequenceData={consequenceData}
           onAdvanceDialogue={advanceDialogue}
           onApplyChoice={applyChoice}
           onReset={resetGame}

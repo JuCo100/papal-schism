@@ -12,11 +12,17 @@ import { getNodeById } from "@/data/storyNodes";
 
 const STORAGE_KEY = "@papal_schism_save";
 
+export interface ConsequenceData {
+  message: string;
+  statDeltas?: StatDelta;
+  relationshipDeltas?: RelationshipDelta;
+}
+
 export function useGameState() {
   const [gameState, setGameState] = useState<GameState>(INITIAL_GAME_STATE);
   const [isLoading, setIsLoading] = useState(true);
   const [lastStatChanges, setLastStatChanges] = useState<StatDelta>({});
-  const [showConsequence, setShowConsequence] = useState<string | null>(null);
+  const [consequenceData, setConsequenceData] = useState<ConsequenceData | null>(null);
 
   useEffect(() => {
     loadGame();
@@ -111,7 +117,11 @@ export function useGameState() {
       const isEnding = nextNode?.isEnding || false;
 
       if (choice.consequence) {
-        setShowConsequence(choice.consequence);
+        setConsequenceData({
+          message: choice.consequence,
+          statDeltas: choice.statDeltas,
+          relationshipDeltas: choice.relationshipDeltas,
+        });
       }
 
       const newState: GameState = {
@@ -139,7 +149,7 @@ export function useGameState() {
   }, []);
 
   const dismissConsequence = useCallback(() => {
-    setShowConsequence(null);
+    setConsequenceData(null);
   }, []);
 
   const hasSave = gameState.hasStarted && !gameState.isComplete;
@@ -155,7 +165,7 @@ export function useGameState() {
     currentNode,
     isAtChoices,
     lastStatChanges,
-    showConsequence,
+    consequenceData,
     startGame,
     continueGame,
     advanceDialogue,

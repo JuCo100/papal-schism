@@ -15,6 +15,7 @@ import * as Haptics from "expo-haptics";
 
 import { GameColors, Spacing, Fonts } from "@/constants/theme";
 import { StoryNode, Choice, GameState, SceneVisual } from "@/data/gameTypes";
+import { ConsequenceData } from "@/hooks/useGameState";
 import StatsOverlay from "@/components/StatsOverlay";
 import ChoiceButton from "@/components/ChoiceButton";
 import TimerBar from "@/components/TimerBar";
@@ -29,7 +30,7 @@ interface GameScreenProps {
   currentNode: StoryNode;
   isAtChoices: boolean;
   lastStatChanges: Record<string, number>;
-  showConsequence: string | null;
+  consequenceData: ConsequenceData | null;
   onAdvanceDialogue: () => void;
   onApplyChoice: (choice: Choice) => void;
   onReset: () => void;
@@ -79,7 +80,7 @@ export default function GameScreen({
   currentNode,
   isAtChoices,
   lastStatChanges,
-  showConsequence,
+  consequenceData,
   onAdvanceDialogue,
   onApplyChoice,
   onReset,
@@ -98,14 +99,20 @@ export default function GameScreen({
 
   useEffect(() => {
     if (lastNodeIdRef.current !== currentNode.id) {
-      if (currentNode.cinematicScene) {
+      if (currentNode.cinematicScene && !consequenceData) {
         setShowCinematicIntro(true);
-      } else {
+      } else if (!consequenceData) {
         setShowCinematicIntro(false);
       }
       lastNodeIdRef.current = currentNode.id;
     }
-  }, [currentNode.id, currentNode.cinematicScene]);
+  }, [currentNode.id, currentNode.cinematicScene, consequenceData]);
+
+  useEffect(() => {
+    if (!consequenceData && lastNodeIdRef.current === currentNode.id && currentNode.cinematicScene) {
+      setShowCinematicIntro(true);
+    }
+  }, [consequenceData, currentNode.id, currentNode.cinematicScene]);
 
   const handleCinematicComplete = useCallback(() => {
     setShowCinematicIntro(false);
@@ -252,16 +259,21 @@ export default function GameScreen({
         />
       ) : null}
 
-      {showConsequence ? (
-        <ConsequenceOverlay message={showConsequence} onDismiss={onDismissConsequence} />
-      ) : null}
-
-      {showCinematicIntro && currentNode.cinematicScene && (
+      {showCinematicIntro && !consequenceData && currentNode.cinematicScene && (
         <ScenePlayer
           scene={currentNode.cinematicScene}
           onComplete={handleCinematicComplete}
         />
       )}
+
+      {consequenceData ? (
+        <ConsequenceOverlay 
+          message={consequenceData.message} 
+          statDeltas={consequenceData.statDeltas}
+          relationshipDeltas={consequenceData.relationshipDeltas}
+          onDismiss={onDismissConsequence} 
+        />
+      ) : null}
     </LinearGradient>
   );
 }
