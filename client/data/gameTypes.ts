@@ -59,12 +59,24 @@ export interface Choice {
   consequence?: string;
 }
 
+export type CharacterPosition = "left" | "right";
+
+export interface CinematicScene {
+  backgroundImage: string;
+  characterImage?: string;
+  characterName?: string;
+  characterPosition?: CharacterPosition;
+  subtitleLines?: string[];
+  autoPlaySeconds?: number;
+}
+
 export interface StoryNode {
   id: string;
   sceneVisual: SceneVisual;
   sceneTitle?: string;
   sceneIcon?: string;
   sceneSvgKey?: SceneSvgKey;
+  cinematicScene?: CinematicScene;
   dialogue: string[];
   choices?: Choice[];
   timedDecision?: {

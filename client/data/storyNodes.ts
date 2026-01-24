@@ -7,6 +7,17 @@ export const storyNodes: StoryNode[] = [
     sceneIcon: "👑",
     sceneTitle: "Coronation",
     sceneSvgKey: "crown",
+    cinematicScene: {
+      backgroundImage: "assets/scenes/coronation.png",
+      characterImage: "assets/characters/cardinal.png",
+      characterName: "Cardinal Camerlengo",
+      characterPosition: "left",
+      subtitleLines: [
+        "The conclave has spoken.",
+        "You have been chosen."
+      ],
+      autoPlaySeconds: 3,
+    },
     dialogue: [
       "The Sistine Chapel falls silent.",
       "Cardinals have cast their votes. The smoke rises white.",
@@ -49,6 +60,17 @@ export const storyNodes: StoryNode[] = [
     sceneIcon: "🕯️",
     sceneTitle: "Council",
     sceneSvgKey: "candles",
+    cinematicScene: {
+      backgroundImage: "assets/scenes/council.png",
+      characterImage: "assets/characters/cardinal.png",
+      characterName: "Cardinal Orsini",
+      characterPosition: "right",
+      subtitleLines: [
+        "The council convenes.",
+        "War demands your attention."
+      ],
+      autoPlaySeconds: 3,
+    },
     dialogue: [
       "Days pass. Your first council convenes.",
       "Cardinal Orsini speaks first. His voice carries decades of ambition.",
@@ -92,6 +114,17 @@ export const storyNodes: StoryNode[] = [
     sceneIcon: "⚔️",
     sceneTitle: "War",
     sceneSvgKey: "swords",
+    cinematicScene: {
+      backgroundImage: "assets/scenes/war.png",
+      characterImage: "assets/characters/messenger.png",
+      characterName: "War Messenger",
+      characterPosition: "left",
+      subtitleLines: [
+        "Terrible news from the front.",
+        "Atrocities committed in your name."
+      ],
+      autoPlaySeconds: 3,
+    },
     dialogue: [
       "Months pass. The war grows worse.",
       "Messengers bring reports of burned villages. Massacred civilians. Churches desecrated.",
@@ -137,6 +170,17 @@ export const storyNodes: StoryNode[] = [
     sceneIcon: "🌾",
     sceneTitle: "Famine",
     sceneSvgKey: "wheat",
+    cinematicScene: {
+      backgroundImage: "assets/scenes/famine.png",
+      characterImage: "assets/characters/peasant.png",
+      characterName: "Peasant Leader",
+      characterPosition: "left",
+      subtitleLines: [
+        "The harvests have failed.",
+        "The people starve."
+      ],
+      autoPlaySeconds: 3,
+    },
     dialogue: [
       "Winter comes early. Harvests fail across the continent.",
       "Refugees flood into Rome. Gaunt faces. Hollow eyes.",
@@ -178,6 +222,17 @@ export const storyNodes: StoryNode[] = [
     sceneIcon: "🎭",
     sceneTitle: "Scandal",
     sceneSvgKey: "mask",
+    cinematicScene: {
+      backgroundImage: "assets/scenes/scandal.png",
+      characterImage: "assets/characters/messenger.png",
+      characterName: "Young Scribe",
+      characterPosition: "right",
+      subtitleLines: [
+        "Secrets long buried...",
+        "Now threaten everything."
+      ],
+      autoPlaySeconds: 3,
+    },
     dialogue: [
       "Spring brings no relief. Only scandal.",
       "A young scribe discovers documents. Payments. Bribes. Secrets.",
@@ -223,6 +278,17 @@ export const storyNodes: StoryNode[] = [
     sceneIcon: "🕯️",
     sceneTitle: "Council",
     sceneSvgKey: "candles",
+    cinematicScene: {
+      backgroundImage: "assets/scenes/council.png",
+      characterImage: "assets/characters/envoy.png",
+      characterName: "Imperial Ambassador",
+      characterPosition: "right",
+      subtitleLines: [
+        "The Emperor makes demands.",
+        "His armies march closer."
+      ],
+      autoPlaySeconds: 3,
+    },
     dialogue: [
       "The Holy Roman Emperor's ambassador arrives unannounced.",
       "He carries a demand. The Emperor wishes to appoint his own bishops.",
@@ -267,6 +333,17 @@ export const storyNodes: StoryNode[] = [
     sceneIcon: "🕯️",
     sceneTitle: "Council",
     sceneSvgKey: "candles",
+    cinematicScene: {
+      backgroundImage: "assets/scenes/council.png",
+      characterImage: "assets/characters/king.png",
+      characterName: "King Alfonso's Envoy",
+      characterPosition: "left",
+      subtitleLines: [
+        "Castile proposes a crusade.",
+        "Holy war beckons."
+      ],
+      autoPlaySeconds: 3,
+    },
     dialogue: [
       "Castile sends a different kind of offer.",
       "King Alfonso proposes an alliance. A crusade against the Moors.",
@@ -310,6 +387,17 @@ export const storyNodes: StoryNode[] = [
     sceneIcon: "✝️",
     sceneTitle: "Schism",
     sceneSvgKey: "split_cross",
+    cinematicScene: {
+      backgroundImage: "assets/scenes/schism.png",
+      characterImage: "assets/characters/cardinal.png",
+      characterName: "Cardinal de Luna",
+      characterPosition: "left",
+      subtitleLines: [
+        "The Church divides.",
+        "An antipope rises in Avignon."
+      ],
+      autoPlaySeconds: 4,
+    },
     dialogue: [
       "The worst news arrives at midnight.",
       "A council of cardinals in Avignon has elected their own Pope.",
@@ -351,6 +439,17 @@ export const storyNodes: StoryNode[] = [
     sceneIcon: "⚔️",
     sceneTitle: "Final Crisis",
     sceneSvgKey: "swords",
+    cinematicScene: {
+      backgroundImage: "assets/scenes/war.png",
+      characterImage: "assets/characters/messenger.png",
+      characterName: "Desperate Messenger",
+      characterPosition: "right",
+      subtitleLines: [
+        "The Emperor's army marches on Rome.",
+        "Three days remain."
+      ],
+      autoPlaySeconds: 4,
+    },
     dialogue: [
       "A year of your papacy. It feels like a lifetime.",
       "War still rages. Famine still kills. The schism still threatens.",
@@ -402,6 +501,14 @@ export const storyNodes: StoryNode[] = [
     sceneIcon: "⚖️",
     sceneTitle: "Judgment",
     sceneSvgKey: "scales",
+    cinematicScene: {
+      backgroundImage: "assets/scenes/judgment.png",
+      subtitleLines: [
+        "History passes its judgment.",
+        "Every choice remembered."
+      ],
+      autoPlaySeconds: 4,
+    },
     dialogue: [
       "History will remember you.",
       "Every choice. Every compromise. Every soul saved or damned by your hand.",

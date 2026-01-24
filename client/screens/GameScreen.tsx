@@ -20,7 +20,7 @@ import ChoiceButton from "@/components/ChoiceButton";
 import TimerBar from "@/components/TimerBar";
 import ConsequenceOverlay from "@/components/ConsequenceOverlay";
 import SceneCard from "@/ui/SceneCard";
-import CinematicIntro from "@/ui/CinematicIntro";
+import ScenePlayer from "@/ui/ScenePlayer";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -96,10 +96,14 @@ export default function GameScreen({
 
   useEffect(() => {
     if (lastNodeIdRef.current !== currentNode.id) {
-      setShowCinematicIntro(true);
+      if (currentNode.cinematicScene) {
+        setShowCinematicIntro(true);
+      } else {
+        setShowCinematicIntro(false);
+      }
       lastNodeIdRef.current = currentNode.id;
     }
-  }, [currentNode.id]);
+  }, [currentNode.id, currentNode.cinematicScene]);
 
   const handleCinematicComplete = useCallback(() => {
     setShowCinematicIntro(false);
@@ -250,11 +254,10 @@ export default function GameScreen({
         <ConsequenceOverlay message={showConsequence} />
       ) : null}
 
-      {showCinematicIntro && (
-        <CinematicIntro
-          node={currentNode}
+      {showCinematicIntro && currentNode.cinematicScene && (
+        <ScenePlayer
+          scene={currentNode.cinematicScene}
           onComplete={handleCinematicComplete}
-          duration={2500}
         />
       )}
     </LinearGradient>
