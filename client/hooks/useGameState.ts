@@ -112,7 +112,6 @@ export function useGameState() {
 
       if (choice.consequence) {
         setShowConsequence(choice.consequence);
-        setTimeout(() => setShowConsequence(null), 2000);
       }
 
       const newState: GameState = {
@@ -139,6 +138,10 @@ export function useGameState() {
     await AsyncStorage.removeItem(STORAGE_KEY);
   }, []);
 
+  const dismissConsequence = useCallback(() => {
+    setShowConsequence(null);
+  }, []);
+
   const hasSave = gameState.hasStarted && !gameState.isComplete;
   const currentNode = getNodeById(gameState.currentNodeId);
   const isAtChoices = currentNode 
@@ -158,5 +161,6 @@ export function useGameState() {
     advanceDialogue,
     applyChoice,
     resetGame,
+    dismissConsequence,
   };
 }

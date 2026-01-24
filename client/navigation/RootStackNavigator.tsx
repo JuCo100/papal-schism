@@ -30,6 +30,7 @@ export default function RootStackNavigator() {
     advanceDialogue,
     applyChoice,
     resetGame,
+    dismissConsequence,
   } = useGameState();
 
   if (isLoading) {
@@ -66,6 +67,7 @@ export default function RootStackNavigator() {
           onAdvanceDialogue={advanceDialogue}
           onApplyChoice={applyChoice}
           onReset={resetGame}
+          onDismissConsequence={dismissConsequence}
         />
       );
     }

@@ -93,7 +93,6 @@ export default function ScenePlayer({ scene, onComplete }: ScenePlayerProps) {
   
   const backgroundSource = BACKGROUND_IMAGES[scene.backgroundImage] || BACKGROUND_IMAGES["assets/scenes/council.png"];
   const characterSource = scene.characterImage ? (CHARACTER_IMAGES[scene.characterImage] || null) : null;
-  const autoPlayDuration = (scene.autoPlaySeconds || 3) * 1000;
   const characterPosition = scene.characterPosition || "left";
 
   useEffect(() => {
@@ -111,13 +110,11 @@ export default function ScenePlayer({ scene, onComplete }: ScenePlayerProps) {
     );
 
     const subtitleTimer = setTimeout(() => setShowSubtitles(true), 400);
-    const autoPlayTimer = setTimeout(onComplete, autoPlayDuration);
 
     return () => {
       clearTimeout(subtitleTimer);
-      clearTimeout(autoPlayTimer);
     };
-  }, [autoPlayDuration, onComplete]);
+  }, []);
 
   const vignetteStyle = useAnimatedStyle(() => ({
     opacity: vignetteOpacity.value,

@@ -33,6 +33,7 @@ interface GameScreenProps {
   onAdvanceDialogue: () => void;
   onApplyChoice: (choice: Choice) => void;
   onReset: () => void;
+  onDismissConsequence: () => void;
 }
 
 const SCENE_BACKGROUNDS: Record<SceneVisual, { colors: readonly [string, string, ...string[]]; start: { x: number; y: number }; end: { x: number; y: number } }> = {
@@ -82,6 +83,7 @@ export default function GameScreen({
   onAdvanceDialogue,
   onApplyChoice,
   onReset,
+  onDismissConsequence,
 }: GameScreenProps) {
   const insets = useSafeAreaInsets();
   const [showStats, setShowStats] = useState(false);
@@ -179,14 +181,14 @@ export default function GameScreen({
       start={sceneBackground.start}
       end={sceneBackground.end}
     >
-      <Pressable
-        style={styles.topBar}
-        onPress={() => setShowStats(true)}
-      >
-        <View style={[styles.topBarContent, { paddingTop: insets.top + Spacing.md }]}>
+      <View style={[styles.topBar, { paddingTop: insets.top + Spacing.md }]}>
+        <Pressable onPress={onReset} hitSlop={20} style={styles.topBarButton}>
+          <Feather name="rotate-ccw" size={20} color={GameColors.textSecondary} />
+        </Pressable>
+        <Pressable onPress={() => setShowStats(true)} hitSlop={20} style={styles.topBarButton}>
           <Feather name="bar-chart-2" size={24} color={GameColors.papalGold} />
-        </View>
-      </Pressable>
+        </Pressable>
+      </View>
 
       <Pressable
         style={styles.mainContent}
@@ -251,7 +253,7 @@ export default function GameScreen({
       ) : null}
 
       {showConsequence ? (
-        <ConsequenceOverlay message={showConsequence} />
+        <ConsequenceOverlay message={showConsequence} onDismiss={onDismissConsequence} />
       ) : null}
 
       {showCinematicIntro && currentNode.cinematicScene && (
@@ -271,13 +273,17 @@ const styles = StyleSheet.create({
   topBar: {
     position: "absolute",
     top: 0,
+    left: 0,
     right: 0,
     zIndex: 10,
-  },
-  topBarContent: {
-    paddingRight: Spacing.lg,
-    paddingLeft: Spacing["2xl"],
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: Spacing.lg,
     paddingBottom: Spacing.md,
+  },
+  topBarButton: {
+    padding: Spacing.sm,
   },
   mainContent: {
     flex: 1,
