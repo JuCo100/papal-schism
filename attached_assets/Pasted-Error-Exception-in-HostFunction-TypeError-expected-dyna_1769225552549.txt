@@ -1,0 +1,80 @@
+Error: Exception in HostFunction: TypeError: expected dynamic type 'boolean', but had type 'array'
+
+This error is located at:
+    at RCTView (<anonymous>)
+    at View (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:137:1246)
+    at y (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:496:848)
+    at ViewManagerAdapter_ExpoLinearGradient_8382837392992801642 (<anonymous>)
+    at ExpoLinearGradient (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:577:322)
+    at c (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1344:439)
+    at b (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1347:1413)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:695:455)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:626:230)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:693:184)
+    at RNSScreenContentWrapper (<anonymous>)
+    at l (<anonymous>)
+    at u (<anonymous>)
+    at RNSScreen (<anonymous>)
+    at Animated(Anonymous) (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:400:466)
+    at t (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1282:329)
+    at Suspense (<anonymous>)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1282:119)
+    at c (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1281:296)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1279:894)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1279:4288)
+    at y (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1301:790)
+    at S (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1205:2450)
+    at RNSScreenStack (<anonymous>)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1298:400)
+    at G (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1297:831)
+    at RCTView (<anonymous>)
+    at View (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:137:1246)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1250:379)
+    at v (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1268:650)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1205:132)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:667:189)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:701:390)
+    at t (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:690:696)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:690:227)
+    at l (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1204:687)
+    at C (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1202:396)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:632:126)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:626:230)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:609:1023)
+    at j (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:724:767)
+    at KeyboardControllerView (<anonymous>)
+    at Animated(Anonymous) (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:400:466)
+    at AnimatedComponent(Animated(Anonymous)) (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:919:237)
+    at Animated(Anonymous) (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:919:605)
+    at C (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1159:1583)
+    at RCTView (<anonymous>)
+    at View (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:137:1246)
+    at o (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1580:330)
+    at RNCSafeAreaProvider (<anonymous>)
+    at anonymous (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1191:477)
+    at s (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:1542:360)
+    at h (<anonymous>)
+    at RCTView (<anonymous>)
+    at View (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:137:1246)
+    at c (https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/ios/bundle.js:321:340)
+
+wi
+    bundle.js:222:82362
+so
+    bundle.js:222:103752
+io
+    bundle.js:222:103004
+lo
+    bundle.js:222:101968
+to
+    bundle.js:222:101810
+$u
+    bundle.js:222:99092
+Ht
+    bundle.js:222:29381
+Dt
+    bundle.js:222:27999
+jt
+    bundle.js:222:28235
+anonymous
+    bundle.js:222:27608
