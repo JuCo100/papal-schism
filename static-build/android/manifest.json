@@ -1,11 +1,11 @@
 {
-  "id": "3026926d-b089-4cbf-ab2d-680d90426738",
-  "createdAt": "2026-01-19T22:07:12.932Z",
+  "id": "bd757c34-8d8b-4a72-9e50-4deaada863d2",
+  "createdAt": "2026-01-24T03:27:39.985Z",
   "runtimeVersion": "exposdk:54.0.0",
   "launchAsset": {
-    "key": "bundle-1768860432932-4027",
+    "key": "bundle-1769225259985-498",
     "contentType": "application/javascript",
-    "url": "https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1768860432932-4027/_expo/static/js/android/bundle.js"
+    "url": "https://f650feb1-a9fe-4b67-a29f-e297e456ff43-00-3coiimiv466c7.worf.replit.dev/1769225259985-498/_expo/static/js/android/bundle.js"
   },
   "assets": [],
   "metadata": {},
@@ -92,6 +92,6 @@
       },
       "mainModuleName": "client/index"
     },
-    "scopeKey": "@anonymous/papal-schism-a6b4a2e0-6be8-4428-9de4-dd0f2a2ec013"
+    "scopeKey": "@anonymous/papal-schism-a7d68652-b8e1-43bd-9a08-fedf41c3138d"
   }
 }
