@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { View, StyleSheet, Pressable, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -6,7 +6,6 @@ import { Feather } from "@expo/vector-icons";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
   withTiming,
   FadeIn,
   FadeOut,
@@ -21,6 +20,7 @@ import ChoiceButton from "@/components/ChoiceButton";
 import TimerBar from "@/components/TimerBar";
 import ConsequenceOverlay from "@/components/ConsequenceOverlay";
 import SceneCard from "@/ui/SceneCard";
+import CinematicIntro from "@/ui/CinematicIntro";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -86,11 +86,24 @@ export default function GameScreen({
   const insets = useSafeAreaInsets();
   const [showStats, setShowStats] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
+  const [showCinematicIntro, setShowCinematicIntro] = useState(true);
+  const lastNodeIdRef = useRef<string>(currentNode.id);
   const dialogueOpacity = useSharedValue(1);
 
   const sceneBackground = SCENE_BACKGROUNDS[currentNode.sceneVisual];
   const currentDialogue = currentNode.dialogue[gameState.dialogueIndex];
   const showChoices = isAtChoices && currentNode.choices;
+
+  useEffect(() => {
+    if (lastNodeIdRef.current !== currentNode.id) {
+      setShowCinematicIntro(true);
+      lastNodeIdRef.current = currentNode.id;
+    }
+  }, [currentNode.id]);
+
+  const handleCinematicComplete = useCallback(() => {
+    setShowCinematicIntro(false);
+  }, []);
 
   useEffect(() => {
     dialogueOpacity.value = 0;
@@ -236,6 +249,14 @@ export default function GameScreen({
       {showConsequence ? (
         <ConsequenceOverlay message={showConsequence} />
       ) : null}
+
+      {showCinematicIntro && (
+        <CinematicIntro
+          node={currentNode}
+          onComplete={handleCinematicComplete}
+          duration={2500}
+        />
+      )}
     </LinearGradient>
   );
 }
